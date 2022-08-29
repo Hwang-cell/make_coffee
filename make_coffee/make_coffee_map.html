@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=dvgkynex5y"></script>
+  <link rel="stylesheet" href="make_coffee.css" type="text/css">
+</head>
+<body>
+  <div class="aheader">
+  <a href="make_coffee.html"><img src="images/make_coffee_icon.png"></a>
+  </div>
+
+
+
+
+  <div class="header">
+    <div class="container">
+      <div class="container-left clearfix">
+        <div class="menu clearfix">
+          <a class="menu-item" onclick="href='make_coffee_beans.html'">BEANS</a>
+          <a class="menu-item" onclick="href='make_coffee_menu.html'">MENU</a>
+          <a class="menu-item" onclick="href='make_coffee_map.html'">LOCATIONS</a>
+          <a class="menu-item" onclick="href='make_coffee_notice.html'">NOTICE</a>
+          <a class="menu-item" onclick="href='make_coffee_voucher.html'">VOUCHER</a>
+          <!--<a class="menu-item" onclick="href='make_coffee_add_user.html'">SIGN UP</a>
+          <a class="menu-item" onclick="href='make_coffee_user_login.html'">SIGN IN</a>-->
+        </div>
+      </div>
+    </div>
+  </div>
+<div id="map" style="width:100%;height:400px;">
+    <script>
+
+      var HOME_PATH = window.HOME_PATH || '.';
+
+
+      var map = new naver.maps.Map('map', {
+          center: new naver.maps.LatLng(37.499815, 127.029407),
+          zoom: 17
+        });
+
+      var marker = new naver.maps.Marker({
+        position: new naver.maps.LatLng(37.499815, 127.029407),
+        map: map
+      });
+      var contentString = [
+        '<div class="iw_inner">',
+        '   <h3>MAKECOFFEE</h3>',
+        '   <p>서울특별시 강남구 강남대로94길 27<br />',
+        '       <img src="'+ HOME_PATH +'/images/make_coffee_main.jfif" width="55" height="55" alt="서울시청" class="thumb" /><br />',
+        '       070-7701-7715 | 음식점 &gt; 카페<br />',
+        '       <a href="http://naver.me/57Xu03Dq" target="_blank">http://naver.me/57Xu03Dq/</a>',
+        '   </p>',
+        '</div>'
+      ].join('');
+
+      var infowindow = new naver.maps.InfoWindow({
+        content: contentString,
+        //maxWidth: 140,
+        backgroundColor: "#eee",
+        borderColor: "#2db400",
+        borderWidth: 5,
+        marginWidth: 5,
+        //paddingWidth : 5,
+        //anchorSize: new naver.maps.Size(30, 30),
+        //anchorSkew: true,
+        //anchorColor: "#eee",
+        //pixelOffset: new naver.maps.Point(20, -20),
+        //margin: 10
+        padding :5
+      });
+
+      naver.maps.Event.addListener(marker, "click", function(e) {
+        if (infowindow.getMap()) {
+          infowindow.close();
+        } else {
+          infowindow.open(map, marker);
+        }
+      });
+
+      infowindow.open(map, marker);
+    </script>
+</div>
+</body>
+</html>
